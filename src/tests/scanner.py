@@ -26,7 +26,7 @@ s.start()
 im=s.snap()
 
 # Write the image out as a GIF file
-im.save('SCANNER_linux_plus_python.gif')
+im.save('SCANNER_linux_plus_python.jpg', "JPEG")
 
 # The show method() simply saves the image to a temporary file and calls "xv".
 im.show()
