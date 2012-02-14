@@ -13,7 +13,10 @@ def get_image():
     # Add the line below if you need it (Ubuntu 8.04+)
     #im = opencv.cvGetMat(im)
     #convert Ipl image to PIL image
-    return opencv.adaptors.Ipl2PIL(im) 
+    if im:
+        return opencv.adaptors.Ipl2PIL(im)
+    else:
+        return None 
 
 fps = 30.0
 pygame.init()
@@ -28,8 +31,8 @@ while True:
         if event.type == QUIT or event.type == KEYDOWN:
             im.save('WEBCAM_linux_plus_python.jpg', "JPEG")
             sys.exit(0)
-    
-    pg_img = pygame.image.frombuffer(im.tostring(), im.size, im.mode)
-    screen.blit(pg_img, (0,0))
-    pygame.display.flip()
-    pygame.time.delay(int(1000 * 1.0/fps))
+    if im:
+        pg_img = pygame.image.frombuffer(im.tostring(), im.size, im.mode)
+        screen.blit(pg_img, (0,0))
+        pygame.display.flip()
+        pygame.time.delay(int(1000 * 1.0/fps))
